@@ -24,7 +24,7 @@ export default class extends BasicScene {
         //Цвет фона
         this.clearColor = new BABYLON.Color3(0.8, 0.8, 0.8);
 
-        this.optimizeFPS();
+        //this.optimizeFPS();
 
         this._initCameras();
         this._initLights();
