@@ -19,16 +19,18 @@ export default class extends BasicModel {
 
         this.meshes = [];
         let index = 0;
-        for(let x = -40; x<40; x+=0.8) {
-            for(let z = -40; z<40; z+=0.8) {
+        for(let x = -20; x<20; x+=0.8) {
+            for(let z = -20; z<20; z+=0.8) {
 
                 let iMesh = this.mainMesh.createInstance('foo');
                 iMesh.position.x = x;
                 iMesh.position.z = z;
-                iMesh.scaling = new BABYLON.Vector3(1, 1, 1);
-                iMesh.rotation.x += index/1000;
-                this.meshes.push(iMesh);
+                iMesh.position.y = (Math.abs(x) + Math.abs(z))/10;
+                console.log(iMesh.position.y);
 
+                iMesh.scaling = new BABYLON.Vector3(1, 1, 1);
+                iMesh.rotation.x += index/500;
+                this.meshes.push(iMesh);
 
                 index++;
             }
@@ -38,14 +40,18 @@ export default class extends BasicModel {
 
     update(delta, time) {
 
-        this.mainMesh.material.diffuseColor.r = Math.sin(time)/2 + 0.5;
-        this.mainMesh.material.diffuseColor.g = Math.cos(time)/2 + 0.5;
-        this.mainMesh.material.diffuseColor.b = Math.sin(time+1)/2 + 0.5;
+        this.mainMesh.material.diffuseColor.r = Math.sin(time + 0)/3 + 0.3;
+        this.mainMesh.material.diffuseColor.g = Math.sin(time + 2)/3 + 0.3;
+        this.mainMesh.material.diffuseColor.b = Math.sin(time + 4)/3 + 0.3;
+
 
         _.each(this.meshes, (mesh, index) => {
-            mesh.rotation.x += delta/2;
-            mesh.rotation.y += delta/5;
-            //mesh.rotation.y += 1/50;
+            //mesh.rotation.x += delta/2;
+            //mesh.rotation.y += delta/5;
+
+            mesh.rotation.x += (Math.sin(time + 4)/3)/10;
+            mesh.rotation.y += (Math.sin(time + 4)/3)/10;
+
 
             mesh.scaling.y = Math.cos(index)/2 + 0.5;
             mesh.scaling.x = Math.sin(index)/2 + 0.5;

@@ -129,9 +129,13 @@ export default class extends BasicScene {
             model.update(delta, time);
         });
 
+        this.clearColor.r = Math.cos(time/2 + 0)/3 + 0.6;
+        this.clearColor.g = Math.cos(time/2 + 2)/3 + 0.6;
+        this.clearColor.b = Math.cos(time/2 + 4)/3 + 0.6;
 
-        this.playerCamera.position.x = Math.cos(time/5)*10;
-        this.playerCamera.position.z = Math.sin(time/5)*10;
+        this.playerCamera.position.x = Math.cos(time/10)*10;
+        this.playerCamera.position.z = Math.sin(time/10)*10;
+        this.playerCamera.position.y = Math.cos(time/5)*5 + 7;
 
         this.playerCamera.setTarget(new BABYLON.Vector3(0,0,0));
     }
